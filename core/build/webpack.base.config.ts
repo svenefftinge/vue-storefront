@@ -108,6 +108,7 @@ export default {
       'theme/app': themeApp,
       'theme/css': themeCSS,
       'theme/resource': themeResources,
+      '@vue-storefront/core': path.resolve(__dirname, '../'),
       // Backward compatible
       '@vue-storefront/core/lib/store/multistore': path.resolve(__dirname, '../lib/multistore.ts'),
       'src/modules/order-history/components/UserOrders': path.resolve(__dirname, '../../core/modules/order/components/UserOrdersHistory'),
@@ -121,7 +122,6 @@ export default {
         enforce: 'pre',
         test: /\.(js|vue,ts)$/,
         loader: 'eslint-loader',
-        exclude: [/node_modules/, /test/]
       },
       {
         test: /\.vue$/,
@@ -135,15 +135,20 @@ export default {
         test: /\.ts$/,
         loader: 'ts-loader',
         options: {
-          appendTsSuffixTo: [/\.vue$/]
+          appendTsSuffixTo: [/\.vue$/],
+          allowTsInNodeModules: true
         },
-        exclude: /node_modules/
+        include: [
+          path.resolve(__dirname, '../../src'),
+          path.resolve(__dirname, '../../core'),
+          path.resolve(__dirname, '../../node_modules'),
+          path.resolve(__dirname, '../../../shopware-pwa')
+        ]      
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [
-          path.resolve(__dirname, '../../node_modules/@vue-storefront'),
           path.resolve(__dirname, '../../src'),
           path.resolve(__dirname, '../../core')
         ]

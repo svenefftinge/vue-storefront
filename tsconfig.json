@@ -34,10 +34,10 @@
     "core/**/*.vue",
     "test/**/*.ts",
     "module/**/*.ts",
-    "packages/**/*.ts"
+    "packages/**/*.ts",
+    "../shopware-pwa/theme/*"
   ],
   "exclude": [
-    "node_modules",
     "**/*.spec.ts"
   ]
 }
